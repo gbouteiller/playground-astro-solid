@@ -1,11 +1,16 @@
 import {JSX, splitProps, type ValidComponent} from "solid-js"
 
 import type {PolymorphicProps} from "@kobalte/core"
-import * as NavigationMenuPrimitive from "@kobalte/core/navigation-menu"
+import type * as NavigationMenuPrimitive from "@kobalte/core/navigation-menu"
+import {Root} from "@kobalte/core/navigation-menu"
 
 import {cn} from "@/lib/utils"
 
-const NavigationMenuItem = NavigationMenuPrimitive.Menu
+import {Content, Icon, Item, ItemDescription, ItemLabel, Portal, Trigger, Viewport} from "@kobalte/core/navigation-menu"
+export {Menu as NavigationMenuItem} from "@kobalte/core/navigation-menu"
+
+
+
 
 type NavigationMenuProps<T extends ValidComponent = "ul"> =
   NavigationMenuPrimitive.NavigationMenuRootProps<T> & {
@@ -18,7 +23,7 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
 ) => {
   const [local, others] = splitProps(props as NavigationMenuProps, ["class", "children"])
   return (
-    <NavigationMenuPrimitive.Root
+    <Root
       gutter={6}
       class={cn(
         "group/menu flex w-max flex-1 list-none items-center justify-center data-[orientation=vertical]:flex-col [&>li]:w-full",
@@ -28,7 +33,7 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
     >
       {local.children}
       <NavigationMenuViewport />
-    </NavigationMenuPrimitive.Root>
+    </Root>
   )
 }
 
@@ -42,7 +47,7 @@ const NavigationMenuTrigger = <T extends ValidComponent = "button">(
 ) => {
   const [local, others] = splitProps(props as NavigationMenuTriggerProps, ["class"])
   return (
-    <NavigationMenuPrimitive.Trigger
+    <Trigger
       class={cn(
         "group/trigger inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[expanded]:bg-accent/50",
         local.class
@@ -53,7 +58,7 @@ const NavigationMenuTrigger = <T extends ValidComponent = "button">(
 }
 const NavigationMenuIcon = () => {
   return (
-    <NavigationMenuPrimitive.Icon aria-hidden="true">
+    <Icon aria-hidden="true">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -66,7 +71,7 @@ const NavigationMenuIcon = () => {
       >
         <path d="M6 9l6 6l6 -6" />
       </svg>
-    </NavigationMenuPrimitive.Icon>
+    </Icon>
   )
 }
 
@@ -78,7 +83,7 @@ const NavigationMenuViewport = <T extends ValidComponent = "li">(
 ) => {
   const [local, others] = splitProps(props as NavigationMenuViewportProps, ["class"])
   return (
-    <NavigationMenuPrimitive.Viewport
+    <Viewport
       class={cn(
         "pointer-events-none z-[1000] flex h-[var(--kb-navigation-menu-viewport-height)] w-[var(--kb-navigation-menu-viewport-width)] origin-[var(--kb-menu-content-transform-origin)] items-center justify-center overflow-x-clip overflow-y-visible rounded-md border bg-popover opacity-0 shadow-lg transition-[width,height] duration-200 ease-in data-[expanded]:pointer-events-auto data-[orientation=vertical]:overflow-y-clip data-[orientation=vertical]:overflow-x-visible data-[expanded]:rounded-md data-[expanded]:opacity-100 data-[expanded]:ease-out",
         local.class
@@ -98,8 +103,8 @@ const NavigationMenuContent = <T extends ValidComponent = "ul">(
 ) => {
   const [local, others] = splitProps(props as NavigationMenuContentProps, ["class"])
   return (
-    <NavigationMenuPrimitive.Portal>
-      <NavigationMenuPrimitive.Content
+    <Portal>
+      <Content
         class={cn(
           // base settings
           "pointer-events-none absolute left-0 top-0 box-border p-4 focus:outline-none data-[expanded]:pointer-events-auto",
@@ -117,7 +122,7 @@ const NavigationMenuContent = <T extends ValidComponent = "ul">(
         )}
         {...others}
       />
-    </NavigationMenuPrimitive.Portal>
+    </Portal>
   )
 }
 
@@ -129,7 +134,7 @@ const NavigationMenuLink = <T extends ValidComponent = "a">(
 ) => {
   const [local, others] = splitProps(props as NavigationMenuLinkProps, ["class"])
   return (
-    <NavigationMenuPrimitive.Item
+    <Item
       class={cn(
         "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors  hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
         local.class
@@ -147,7 +152,7 @@ const NavigationMenuLabel = <T extends ValidComponent = "div">(
 ) => {
   const [local, others] = splitProps(props as NavigationMenuLabelProps, ["class"])
   return (
-    <NavigationMenuPrimitive.ItemLabel
+    <ItemLabel
       class={cn("text-sm font-medium leading-none", local.class)}
       {...others}
     />
@@ -162,7 +167,7 @@ const NavigationMenuDescription = <T extends ValidComponent = "div">(
 ) => {
   const [local, others] = splitProps(props as NavigationMenuDescriptionProps, ["class"])
   return (
-    <NavigationMenuPrimitive.ItemDescription
+    <ItemDescription
       class={cn("text-sm leading-snug text-muted-foreground", local.class)}
       {...others}
     />
@@ -170,6 +175,6 @@ const NavigationMenuDescription = <T extends ValidComponent = "div">(
 }
 
 export {
-  NavigationMenu, NavigationMenuContent, NavigationMenuDescription, NavigationMenuIcon, NavigationMenuItem, NavigationMenuLabel, NavigationMenuLink, NavigationMenuTrigger, NavigationMenuViewport
+  NavigationMenu, NavigationMenuContent, NavigationMenuDescription, NavigationMenuIcon, NavigationMenuLabel, NavigationMenuLink, NavigationMenuTrigger, NavigationMenuViewport
 }
 
