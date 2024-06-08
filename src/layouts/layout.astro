@@ -1,5 +1,6 @@
 ---
 import "@/styles/globals.css"
+import {ViewTransitions} from "astro:transitions"
 import {Menu} from "./menu"
 ---
 
@@ -10,6 +11,7 @@ import {Menu} from "./menu"
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Solid</title>
+		<ViewTransitions />
 	</head>
 	<body>
     <Menu client:load />
