@@ -1,9 +1,9 @@
-import { JSX, splitProps, ValidComponent } from "solid-js"
+import {JSX, splitProps, type ValidComponent} from "solid-js"
 
-import { PolymorphicProps } from "@kobalte/core"
+import type {PolymorphicProps} from "@kobalte/core"
 import * as NavigationMenuPrimitive from "@kobalte/core/navigation-menu"
 
-import { cn } from "@/lib/utils"
+import {cn} from "@/lib/utils"
 
 const NavigationMenuItem = NavigationMenuPrimitive.Menu
 
@@ -170,13 +170,6 @@ const NavigationMenuDescription = <T extends ValidComponent = "div">(
 }
 
 export {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuIcon,
-  NavigationMenuViewport,
-  NavigationMenuContent,
-  NavigationMenuLink,
-  NavigationMenuLabel,
-  NavigationMenuDescription
+  NavigationMenu, NavigationMenuContent, NavigationMenuDescription, NavigationMenuIcon, NavigationMenuItem, NavigationMenuLabel, NavigationMenuLink, NavigationMenuTrigger, NavigationMenuViewport
 }
+
