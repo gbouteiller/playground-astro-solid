@@ -1,14 +1,20 @@
-import solidJs from "@astrojs/solid-js";
-import tailwind from "@astrojs/tailwind";
-import { defineConfig } from "astro/config";
+import solid from "@astrojs/solid-js"
+import tailwind from "@astrojs/tailwind"
+import {defineConfig} from "astro/config"
 
-import netlify from "@astrojs/netlify";
+import netlify from "@astrojs/netlify"
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [solidJs(), tailwind({
-    applyBaseStyles: false
-  })],
+  integrations: [
+    solid({devtools: true}),
+    tailwind({
+      applyBaseStyles: false,
+    }),
+  ],
   output: "server",
-  adapter: netlify()
-});
+  adapter: netlify(),
+  experimental: {
+    actions: true,
+  },
+})
