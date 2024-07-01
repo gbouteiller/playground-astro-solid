@@ -1,10 +1,12 @@
-import eslintPluginAstro from "eslint-plugin-astro"
-import eslintPluginUnicorn from "eslint-plugin-unicorn"
+import astro from "eslint-plugin-astro"
+import solid from "eslint-plugin-solid"
+import unicorn from "eslint-plugin-unicorn"
 
 export default [
-  eslintPluginUnicorn.configs["flat/recommended"],
-  ...eslintPluginAstro.configs["flat/recommended"],
-  ...eslintPluginAstro.configs["flat/jsx-a11y-strict"],
+  unicorn.configs["flat/recommended"],
+  ...astro.configs["flat/recommended"],
+  ...astro.configs["flat/jsx-a11y-strict"],
+  solid.configs["flat/recommended"],
   {
     rules: {
       "unicorn/prefer-module": "off",

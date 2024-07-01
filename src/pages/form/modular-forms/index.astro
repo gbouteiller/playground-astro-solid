@@ -1,14 +1,19 @@
 ---
-import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert"
+import {contactDefaultValues, getContactMessage, getValuesFor, type ContactState} from "@/actions/utils"
 import Layout from "@/layouts/layout.astro"
 import {formModularFormsNavs, formNavs} from "@/lib/utils"
-// import Form from "./_form"
+import {actions} from "astro:actions"
+import Form from "./_form"
+
+const state = Astro.getActionResult(actions.sendEmail) ?? {data: false, error: undefined}
+const values = await getValuesFor({
+  actionName: "sendEmail",
+  defaultValues: contactDefaultValues,
+  shouldSkip: (state: ContactState) => !!state.data,
+})(Astro.request, state)
+const message = getContactMessage(state)
 ---
 
 <Layout aside={formNavs} tabs={formModularFormsNavs}>
-  <!-- <Form client:load /> -->
-  <Alert>
-    <AlertTitle>Alert!</AlertTitle>
-    <AlertDescription>not working yet...</AlertDescription>
-  </Alert>
+  <Form client:load defaultState={state} defaultValues={values} />
 </Layout>

@@ -10,18 +10,12 @@ export const mainNavs = [
 
 export const formNavs = [
   {id: "form_modular-forms", text: "Modular Forms", href: "/form/modular-forms"},
-  {id: "form_react-hook-form", text: "React Hook Form", href: "/form/react-hook-form"},
   {id: "form_tanstack-form", text: "Tanstack Form", href: "/form/tanstack-form"},
 ]
 
 export const formModularFormsNavs = [
   {id: "form_modular-forms_normal", text: "Normal", href: "/form/modular-forms"},
   {id: "form_modular-forms_unloaded", text: "Unloaded", href: "/form/modular-forms/unloaded"},
-]
-
-export const formReactHookFormNavs = [
-  {id: "form_react-hook-form_normal", text: "Normal", href: "/form/react-hook-form"},
-  {id: "form_react-hook-form_unloaded", text: "Unloaded", href: "/form/react-hook-form/unloaded"},
 ]
 
 export const formTanstackFormNavs = [
