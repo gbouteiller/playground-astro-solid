@@ -19,7 +19,7 @@ import {splitProps, type ValidComponent} from "solid-js"
 export const FormInput = <V extends FieldValues, N extends FieldPath<V>, T extends ValidComponent = "input">(
   props: PolymorphicProps<T, FormInputProps<V, N, T>>
 ) => {
-  const [local, others] = splitProps(props as FormInputProps<V, N, T>, ["props"])
+  const [local, others] = splitProps(props as FormInputProps, ["props"])
   return <TextFieldInput {...local.props} {...others} />
 }
 
@@ -33,11 +33,11 @@ export type FormInputProps<
 export const FormItem = <V extends FieldValues, N extends FieldPath<V>, T extends ValidComponent = "div">(
   props: PolymorphicProps<T, FormItemProps<V, N, T>>
 ) => {
-  const [local, others] = splitProps(props as FormItemProps<V, N, T>, ["class", "field"])
+  const [local, others] = splitProps(props as FormItemProps<V, N>, ["class", "field"])
   return (
     <TextField
       name={local.field.name}
-      value={local.field.value}
+      value={`${local.field.value}` ?? undefined}
       validationState={local.field.error ? "invalid" : "valid"}
       class={cn("space-y-2", local.class)}
       {...others}
@@ -71,7 +71,7 @@ export type FormMessageProps<
 export const FormTextarea = <V extends FieldValues, N extends FieldPath<V>, T extends ValidComponent = "textarea">(
   props: PolymorphicProps<T, FormTextareaProps<V, N, T>>
 ) => {
-  const [local, others] = splitProps(props as FormTextareaProps<V, N, T>, ["field", "props"])
+  const [local, others] = splitProps(props as unknown as FormTextareaProps, ["field", "props"])
   return (
     <TextFieldTextArea {...local.props} {...others}>
       {/* MONKEY PATCH: textarea set as value instead of innerHTML */}
